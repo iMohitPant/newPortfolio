@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohit Pant | Frontend Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #181818;
+      --bg-secondary: #232323;
+      --text: #f5f5f5;
+      --accent: #bdbdbd; /* light grey */
+      --accent-hover: #e0e0e0; /* lighter grey */
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background-color: var(--bg-secondary);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    }
+
+    header h1 {
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--accent);
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--accent-hover);
+    }
+
+    section {
+      padding: 4rem 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 3px;
+      background-color: var(--accent);
+      margin-top: 0.5rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 6rem 2rem;
+      background: linear-gradient(135deg, #232323, #181818, #232323, #181818);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      color: var(--text);
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: auto;
+      opacity: 0.9;
+    }
+
+    .about, .skills, .projects, .contact {
+      background-color: var(--bg-secondary);
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      margin-bottom: 0.75rem;
+      background-color: #334155;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      transition: background-color 0.3s;
+    }
+
+    li:hover {
+      background-color: #475569;
+    }
+
+    .contact a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact a:hover {
+      color: var(--accent-hover);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      background-color: var(--bg-secondary);
+      border-top: 1px solid #334155;
+    }
+
+    .nav-underline {
+      position: relative;
+      display: inline-block;
+    }
+    .nav-underline::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+      transition: width 0.3s;
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+    }
+    .nav-underline:hover::after, .nav-underline.active::after {
+      width: 100%;
+    }
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 24px rgba(99,102,241,0.2);
+      background: #fff;
+    }
+    .typewriter {
+      display: inline-block;
+      border-right: 2px solid var(--accent);
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 2.5s steps(30, end), blink-caret 0.75s step-end infinite;
+      font-size: 1.3rem;
+      font-weight: 600;
+      min-width: 220px;
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: #fff; }
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s, transform 0.8s;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .scroll-top-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--accent);
+      color: var(--bg-secondary);
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      font-size: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      cursor: pointer;
+      display: none;
+      z-index: 200;
+      transition: background 0.2s;
+    }
+    .scroll-top-btn:hover {
+      background: var(--accent-hover);
+    }
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .skills-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: #334155;
+      padding: 0.75rem 1.2rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 500;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .skills-list svg {
+      width: 22px;
+      height: 22px;
+      color: var(--accent);
+    }
+    .contact-links {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1rem;
+      justify-content: center;
+    }
+    .contact-links a {
+      color: var(--accent);
+      font-size: 2rem;
+      transition: color 0.2s;
+    }
+    .contact-links a:hover {
+      color: var(--accent-hover);
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        margin-top: 0.5rem;
+      }
+      nav a {
+        margin-left: 0;
+        margin-right: 1rem;
+      }
+    }
+    .skills-list svg [fill="#e34c26"],
+    .skills-list svg [stroke="#61dafb"],
+    .skills-list svg [stroke="#6366f1"],
+    .skills-list svg [stroke="#6366f1"] {
+      fill: var(--accent) !important;
+      stroke: var(--accent) !important;
+    }
+    .skills-list svg [fill="#fff"] {
+      fill: #fff !important;
+    }
+
+    .contact a.email-link {
+  color: #4ade80; /* green */
+  text-decoration: underline;
+}
+
+.contact a.email-link:hover {
+  color: #22c55e;
+}
+
+.contact a.linkedin-link {
+  color: #60a5fa; /* blue */
+  text-decoration: underline;
+}
+
+.contact a.linkedin-link:hover {
+  color: #3b82f6;
+}
+
+
+
+  </style>
+  <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+
+</head>
+<body>
+
+  <header>
+    <h1>Mohit Pant</h1>
+    <nav>
+      <a href="#about" class="nav-underline">About</a>
+      <a href="#skills" class="nav-underline">Skills</a>
+      <a href="#projects" class="nav-underline">Projects</a>
+      <a href="#contact" class="nav-underline">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero fade-in" id="hero">
+    <img src="https://api.dicebear.com/8.x/adventurer/svg?seed=Aneka" alt="Mohit Pant" class="profile-img" />
+    <h1>Hi, I'm Mohit Pant <span aria-label="waving hand">👋</span></h1>
+    <div class="typewriter" id="typewriter"></div>
+    <p style="margin-top:1.5rem;">I’m a creative Frontend Developer from India. I build sleek, responsive, and user-focused web apps with modern technologies.</p>
+  </section>
+
+  <section id="about" class="about fade-in">
+    <h2>About Me</h2>
+    <p>
+      I’m Mohit Pant, a Member of Research Staff at BEL–CRL (Ministry of Defence, Government of India).  
+
+      I’m an experienced C++ developer focused on backend applications, with a proven track record of delivering robust and reliable software at BEL CRL GAD. I enjoy solving complex problems with clean, efficient code, and have worked extensively on real-world defense projects requiring precision and reliability.  
+      
+      Beyond C++, I have hands-on experience with Qt Creator for UI development, as well as modern web technologies including HTML, CSS, JavaScript, and responsive design. I’m comfortable working on Linux (RHEL) environments, using Git for version control, and collaborating on challenging technical tasks.  
+      
+      With a GATE 2023 Computer Science rank of AIR 744, I’m committed to continuous learning and applying advanced computing concepts in real-world systems. I’m always eager to explore new technologies and contribute to impactful projects.
+      
+    </p>
+  </section>
+
+  <section id="skills" class="skills fade-in">
+    <h2>Skills</h2>
+    <ul class="skills-list">
+      <li>
+        <span class="iconify" data-icon="mdi:language-c" data-inline="false"></span>
+      </li>
+      <li>
+        <span class="iconify" data-icon="mdi:language-cpp" data-inline="false"></span>
+      </li>
+      <li>
+        <span class="iconify" data-icon="simple-icons:qt" data-inline="false"></span>
+        Qt Creator
+      </li>
+      <li>
+        <span class="iconify" data-icon="vscode-icons:file-type-html" data-inline="false"></span>
+        HTML5
+        <span class="iconify" data-icon="vscode-icons:file-type-css" data-inline="false"></span>
+        CSS3
+        <span class="iconify" data-icon="vscode-icons:file-type-js-official" data-inline="false"></span>
+        JavaScript (ES6+)
+      </li>
+      <li>
+        <span class="iconify" data-icon="material-symbols:responsive-layout" data-inline="false"></span>
+        Responsive Web Design
+      </li>
+      <li>
+        <span class="iconify" data-icon="simple-icons:linux" data-inline="false"></span>
+        Linux (RHEL)
+      </li>
+      <li>
+        <span class="iconify" data-icon="mdi:git" data-inline="false"></span>
+        Git & GitHub for Collaboration
+      </li>
+    </ul>
+  </section>
+  
+  
+
+  <section id="projects" class="projects fade-in">
+    <h2>Projects</h2>
+    <ul>
+      <li><strong>Portfolio Website</strong> — A sleek personal site built with HTML, CSS, and JavaScript, fully responsive and minimal.</li>
+      <li><strong>Weather App</strong> — Real-time weather data from OpenWeather API with modern UI design and location search.</li>
+      <li><strong>React Task Tracker</strong> — A to-do app built in React with add, delete, and complete features.</li>
+      <li><strong>GitHub Finder</strong> — React app consuming GitHub API to search and view user profiles and repos.</li>
+    </ul>
+  </section>
+
+  <section id="contact" class="contact fade-in">
+    <h2>Contact</h2>
+    <p>
+      Interested in working together or chatting about a project?  <br>
+      Send me an <a class="email-link" href="mailto:mohitpant1999@gmail.com">email</a> or connect on <a class="linkedin-link" href="https://www.linkedin.com/in/imohitpant/">LinkedIn</a>.
+    </p>
+    
+    
+    <div class="contact-links">
+      <a href="mailto:mohitpant1999@gmail.com" title="Email"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="2"/><path d="M22 6l-10 7L2 6" stroke="#6366f1" stroke-width="2"/></svg></a>
+      <a href="https://github.com/iMohitPant" target="_blank" title="GitHub"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M9 14c-4 2 4 6 8 0M9 9h.01M15 9h.01" stroke="#6366f1" stroke-width="2"/></svg></a>
+      <a href="https://www.linkedin.com/in/imohitpant/" target="_blank" title="LinkedIn"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/><path d="M7 10v4M7 7v.01M12 10v4M12 10c0-1.1.9-2 2-2s2 .9 2 2v4" stroke="#6366f1" stroke-width="2"/></svg></a>
+    </div>
+  </section>
+
+  <button class="scroll-top-btn" id="scrollTopBtn" title="Scroll to top">↑</button>
+
+  <footer>
+    © 2025 Mohit Pant. Built with ❤️ by me.
+  </footer>
+
+  <script>
+    // Typewriter effect
+    const typewriter = document.getElementById('typewriter');
+    const words = [
+      'Frontend Developer',
+      'React Enthusiast',
+      'UI/UX Explorer',
+      'Problem Solver',
+      'Open Source Contributor'
+    ];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    function type() {
+      const current = words[wordIndex];
+      if (isDeleting) {
+        typewriter.textContent = current.substring(0, charIndex--);
+        if (charIndex < 0) {
+          isDeleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+          setTimeout(type, 600);
+        } else {
+          setTimeout(type, 40);
+        }
+      } else {
+        typewriter.textContent = current.substring(0, charIndex++);
+        if (charIndex > current.length) {
+          isDeleting = true;
+          setTimeout(type, 1200);
+        } else {
+          setTimeout(type, 90);
+        }
+      }
+    }
+    type();
+
+    // Fade-in on scroll
+    function revealOnScroll() {
+      document.querySelectorAll('.fade-in').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 60) {
+          el.classList.add('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('DOMContentLoaded', revealOnScroll);
+
+    // Scroll to top button
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        scrollBtn.style.display = 'block';
+      } else {
+        scrollBtn.style.display = 'none';
+      }
+    });
+    scrollBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Animated nav underline for current section
+    const navLinks = document.querySelectorAll('nav a');
+    const sections = ['about', 'skills', 'projects', 'contact'];
+    window.addEventListener('scroll', () => {
+      let current = '';
+      for (const id of sections) {
+        const section = document.getElementById(id);
+        if (section && window.scrollY >= section.offsetTop - 120) {
+          current = id;
+        }
+      }
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
