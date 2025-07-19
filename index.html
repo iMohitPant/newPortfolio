@@ -102,7 +102,7 @@
       opacity: 0.9;
     }
 
-    .about, .skills, .projects, .contact {
+    .about, .skills, .projects, .contact , .education {
       background-color: var(--bg-secondary);
       border-radius: 12px;
       margin-bottom: 2rem;
@@ -329,6 +329,35 @@
 }
 
 
+/* Education section optimization */
+.education-item {
+      margin-bottom: 1.5rem;
+      padding: 1rem 1.2rem;
+      background-color: #1f1f1f;
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+      will-change: transform;
+    }
+
+    .education-item:hover {
+      transform: translateY(-4px);
+    }
+
+    .education-item h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .edu-institute, .edu-year {
+      color: var(--accent);
+      font-size: 0.95rem;
+    }
+
+
 
 
 
@@ -368,6 +397,19 @@
       With a GATE 2023 Computer Science rank of AIR 744, I’m committed to continuous learning and applying advanced computing concepts in real-world systems. I’m always eager to explore new technologies and contribute to impactful projects.
       
     </p>
+  </section>
+
+  <section id="education" class="education fade-in">
+    <h2>Education</h2>
+    <div class="education-item">
+      <h3>Bachelor of Technology (B.Tech) in Computer Science</h3>
+      <p class="edu-institute">College of Technology, GBPIET, Pauri</p>
+      <p class="edu-year"><strong>Year:</strong> 2019 – 2023</p>
+    </div>
+    <div class="education-item">
+      <h3>All India Rank 744 - GATE CS 2023</h3>
+      <p class="edu-institute">Qualified GATE Computer Science with top percentile</p>
+    </div>
   </section>
 
 
