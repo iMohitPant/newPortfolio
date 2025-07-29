@@ -357,6 +357,36 @@
       font-size: 0.95rem;
     }
 
+    /* Base style */
+#navName {
+  font-family: 'Fira Code', monospace;
+  font-size: 1.4rem;
+  font-style: italic;
+  color: #b0b0b0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* Falling animation */
+@keyframes fall {
+  to {
+    transform: translate(var(--x), 110vh) rotate(var(--rot));
+    opacity: 0;
+  }
+}
+
+#navName span {
+  display: inline-block;
+  transition: transform 0.3s;
+}
+
+/* Activated state */
+#navName.falling span {
+  animation: fall var(--dur) ease-out forwards;
+  animation-delay: var(--delay);
+}
+
+
 
 
 
@@ -369,7 +399,12 @@
 <body>
 
   <header>
-    <h1>Mohit Pant</h1>
+    <!-- Navbar name (wrap each character in a <span>) -->
+<h1 id="navName">
+  <span>M</span><span>o</span><span>h</span><span>i</span><span>t</span> <span>P</span><span>a</span><span>n</span><span>t</span>
+</h1>
+
+
     <nav>
       <a href="#about" class="nav-underline">About</a>
       <a href="#skills" class="nav-underline">Skills</a>
@@ -497,6 +532,8 @@
     © 2025 Mohit Pant. Handcrafted with ❤️ <br><br>
     <em>न कंचित् शाश्वतम्</em> 
   </footer>
+
+  
   
 
   <script>
@@ -578,6 +615,31 @@
         }
       });
     });
+
+
+    //navBar falling efect
+    document.getElementById('navName').addEventListener('click', () => {
+  const nameEl = document.getElementById('navName');
+  if (nameEl.classList.contains('falling')) return; // avoid double‑click
+
+  nameEl.querySelectorAll('span').forEach(span => {
+    // random horizontal drift (vw), rotation (deg), duration (s), delay (s)
+    span.style.setProperty('--x', `${Math.random()*40-20}vw`);
+    span.style.setProperty('--rot', `${Math.random()*720-360}deg`);
+    span.style.setProperty('--dur', `${0.8 + Math.random()*0.6}s`);
+    span.style.setProperty('--delay', `${Math.random()*0.3}s`);
+  });
+
+  nameEl.classList.add('falling');
+
+  // optional: rebuild name after animation so it can be clicked again
+  setTimeout(() => {
+    nameEl.classList.remove('falling');
+  }, 5000); // max dur (0.8+0.6) + max delay (0.3) ≈ 1.4 s
+});
   </script>
+
+
+
 </body>
 </html>
